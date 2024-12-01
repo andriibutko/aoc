@@ -1,6 +1,5 @@
 package aoc.day01;
 
-
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -11,26 +10,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Day01Test {
 
     @Test
-    public void testPart1(){
+    public void testPart1() {
         // Given
-        String input = "test";
+        String input = """
+                3   4
+                4   3
+                2   5
+                1   3
+                3   9
+                3   3
+                """;
 
         // When
         String result = new Day01().part1(input);
 
         // Then
-        assertEquals(input, result);
+        assertEquals("11", result);
     }
 
     @Test
-    public void testPart2(){
+    public void testPart2() {
         // Given
-        String input = "test";
+        String input = """
+            3   4
+            4   3
+            2   5
+            1   3
+            3   9
+            3   3
+            """;
 
         // When
         String result = new Day01().part2(input);
 
         // Then
-        assertEquals(input, result);
+        assertEquals("31", result);
     }
 }
