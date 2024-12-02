@@ -9,7 +9,7 @@
             "name": "App",
             "request": "launch",
             "mainClass": "aoc.App",
-            "projectName": "advent-of-code-advent-of-code-java-starter",
+            "projectName": "AOC-2024",
             "args": [
                 "${input:args}"
             ]
