@@ -7,6 +7,9 @@ build
 # Intellij
 .idea
 out
+
+# Scala ???
+/.metals
  
 # eclipse
 /.apt_generated
