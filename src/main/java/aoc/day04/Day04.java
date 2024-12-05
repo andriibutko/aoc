@@ -66,7 +66,7 @@ public class Day04 implements Day {
             int totalOccurrences = 0;
 
             char[][] currentPattern = patterns;
-            for (int i = 0; i < 4; i++) { // 0° (original), 90°, 180°, 270°
+            for (int i = 0; i < 4; i++) {
                 totalOccurrences += countPatternInMatrix(grid, currentPattern);
                 currentPattern = rotate90(currentPattern);
             }
