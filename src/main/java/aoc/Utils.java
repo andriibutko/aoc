@@ -15,4 +15,9 @@ public class Utils {
         return Stream.of(input.split(System.lineSeparator()));
     }
 
+    public static char[][] matrixFrom(String input) {
+        return Stream.of(input.split(System.lineSeparator()))
+            .map(String::toCharArray).toArray(char[][]::new);
+    }
+
 }
