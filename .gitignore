@@ -10,6 +10,9 @@ out
 
 # Scala ???
 /.metals
+
+# MacOS
+.DS_Store
  
 # eclipse
 /.apt_generated
