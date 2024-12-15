@@ -25,11 +25,8 @@ public class Utils {
         .map(line -> line.chars().map(Character::getNumericValue).toArray()).toArray(int[][]::new);
     }
 
-    public static <T> boolean isOutOfBounds(T[][] matrix, int[] cell) {
-        var r = cell[0];
-        var c = cell[1];
-
-        return r < 0 || r >= matrix.length || c < 0 || c >= matrix[0].length;
+    public static boolean isOutOfBounds(char[][] matrix, int x, int y) {
+        return x < 0 || x >= matrix.length || y < 0 || y >= matrix[0].length;
     }
 
     public static boolean isOutOfBounds(int[][] matrix, int[] cell) {
