@@ -36,14 +36,11 @@ public class Day03 implements Day {
 
         for(String part: parts) {
             if(part.contains(doNext)) {
-                System.out.println("Part: " + part);
                 var doThis = part.substring(part.indexOf(doNext));
                 filtered.append(doThis);
             }
         }
         
-        System.out.println("Filtered: " + filtered);
-
         var result = getSum(filtered.toString());
 
         return String.valueOf(result);
