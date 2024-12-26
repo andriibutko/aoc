@@ -25,6 +25,7 @@ application {
 
 testlogger {
     showPassed = false
+    logLevel = LogLevel.LIFECYCLE
 }
 
 // Use JUnit Platform for unit tests
