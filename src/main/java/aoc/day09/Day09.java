@@ -108,7 +108,7 @@ public class Day09 implements Day {
                         blocks.remove(blockId);
                         lastMovedId = blockId;
                         blocks.set(i, new Block(head.id, head.start, head.length, 0));
-                        blocks.add(i + 1, new Block(tail.id, head.start + head.length, tail.length, tail.free - tail.length));
+                        blocks.add(i + 1, new Block(tail.id, head.start + head.length, tail.length, head.free - tail.length));
                         moved = true;
                     }
                 }
