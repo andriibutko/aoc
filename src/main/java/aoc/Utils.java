@@ -17,6 +17,7 @@ public class Utils {
 
     public static char[][] matrixFrom(String input) {
         return Stream.of(input.split(System.lineSeparator()))
+            .map(String::trim)
             .map(String::toCharArray).toArray(char[][]::new);
     }
 
