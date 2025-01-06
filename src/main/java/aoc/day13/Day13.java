@@ -1,17 +1,12 @@
 package aoc.day13;
 
-import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
-import aoc.Utils;
-import aoc.common.Pair;
-import static aoc.common.Pair.pair;
 
 public class Day13 implements aoc.Day {
 
-    record Location(int x, int y) { }
+    record Location(int x, int y) {
+    }
 
     /*
      * Button A: ax, ay. an - amount of minimum pushes
@@ -19,11 +14,13 @@ public class Day13 implements aoc.Day {
      * 
      * px, py - prize coordinates
      * 
-     * ax * an + bx * bn = px  (multiply by by) -> ax * an * by + bx * bn * by = px * by
-     * ay * an + by * bn = py  (multiply by bx) -> ay * an * bx + by * bn * bx = py * bx
+     * ax * an + bx * bn = px (multiply by by) -> ax * an * by + bx * bn * by = px *
+     * by
+     * ay * an + by * bn = py (multiply by bx) -> ay * an * bx + by * bn * bx = py *
+     * bx
      * 
-     * bx * bn * by = px * by - ax * an * by 
-     * bx * bn * by = py * bx - ay * an * bx 
+     * bx * bn * by = px * by - ax * an * by
+     * bx * bn * by = py * bx - ay * an * bx
      * 
      * px * by - ax * an * by = py * bx - ay * an * bx
      * ay * an * bx - ax * an * by = py * bx - px * by
@@ -38,28 +35,17 @@ public class Day13 implements aoc.Day {
 
         int result = 0;
 
-        for(var part : parts) {
+        for (var part : parts) {
             String[] lines = part.split(System.lineSeparator());
 
             Location a = parseCoordinates(lines[0]);
             Location b = parseCoordinates(lines[1]);
             Location prize = parseCoordinates(lines[2]);
 
-            int ax = a.x;
-            int ay = a.y;
-            int bx = b.x;
-            int by = b.y;
             int px = prize.x;
             int py = prize.y;
 
-            double an = (px * by - py * bx) / (ax * by - ay * bx);
-            double bn = (px - ax * an) / bx;
-
-            if (an < 0 || bn < 0 || an > 100 || bn > 100) continue;
-
-            if(an % 1 == 0 && bn % 1 == 0 ) {
-                result += an * 3 + bn;
-            }
+            result += getCost(a, b, px, py);
         }
 
         return String.valueOf(result);
@@ -72,37 +58,43 @@ public class Day13 implements aoc.Day {
         long result = 0;
         long offset = 10000000000000L;
 
-        for(var part : parts) {
+        for (var part : parts) {
             String[] lines = part.split(System.lineSeparator());
 
             Location a = parseCoordinates(lines[0]);
             Location b = parseCoordinates(lines[1]);
             Location prize = parseCoordinates(lines[2]);
 
-            long ax = a.x;
-            long ay = a.y;
-            long bx = b.x;
-            long by = b.y;
             long px = prize.x + offset;
             long py = prize.y + offset;
 
-            var det = ax * by - ay * bx;
-            if (det == 0) {
-               continue; // if determinant is 0, then there is no solution
-            }
-
-            long an = by * px - bx * py;
-            long bn = -ay * px + ax * py;
-
-            if (an % det == 0 && bn % det == 0) {
-                result += ((an * 3) + bn) / det;
-            }
+            result += getCost(a, b, px, py);
         }
 
         return String.valueOf(result);
     }
 
-     private static Location parseCoordinates(String input) {
+    private long getCost(Location a, Location b, long px, long py) {
+        long ax = a.x;
+        long ay = a.y;
+        long bx = b.x;
+        long by = b.y;
+
+        var detA = ax * by - ay * bx;
+        long numA = px * by - py * bx;
+
+        // check if the system has a solution
+        if (detA == 0 && bx != 0 || numA % detA != 0) {
+            return 0;
+        }
+
+        long an = numA / detA;
+        long bn = (px - ax * an) / bx;
+
+        return an * 3 + bn;
+    }
+
+    private static Location parseCoordinates(String input) {
         Pattern pattern = Pattern.compile("X[+=](\\d+), Y[+=](\\d+)");
         Matcher matcher = pattern.matcher(input);
 
