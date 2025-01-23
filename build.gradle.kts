@@ -1,6 +1,6 @@
 plugins {
     application // Applying the application plugin
-    id("com.adarshr.test-logger") version "4.0.0" // Correct plugin declaration in Kotlin DSL
+    // id("com.adarshr.test-logger") version "4.0.0" // Correct plugin declaration in Kotlin DSL
 }
 
 repositories {
@@ -23,10 +23,10 @@ application {
     mainClass.set("aoc.App") // Define the main class for the application
 }
 
-testlogger {
-    showPassed = false
-    logLevel = LogLevel.LIFECYCLE
-}
+// testlogger {
+//     showPassed = false
+//     logLevel = LogLevel.LIFECYCLE
+// }
 
 // Use JUnit Platform for unit tests
 tasks.named<Test>("test") {

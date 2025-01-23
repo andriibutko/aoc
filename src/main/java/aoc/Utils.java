@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import aoc.common.Location;
+
 
 public class Utils {
     
@@ -35,6 +37,27 @@ public class Utils {
         var c = cell[1];
 
         return r < 0 || r >= matrix.length || c < 0 || c >= matrix[0].length;
+    }
+
+    public static void printMatrix(char[][] matrix) {
+        System.out.println(">> Printing matrix <<");
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j]);
+            }
+            System.out.println();
+        }
+    }   
+
+    public static Location getLocation(char[][] matrix, char c) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == c) {
+                    return new Location(i, j);
+                }
+            }
+        }
+        throw new IllegalArgumentException("Character not found in matrix");
     }
 
 }
