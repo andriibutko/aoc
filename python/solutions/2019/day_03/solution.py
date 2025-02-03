@@ -19,7 +19,9 @@ class Solution(TextSolution):
             return (0, -1)
         elif dir == "R":
             return (0, 1)
-        
+    
+    # it also possible to calculated visited points on the fly, which would save memory
+    # but as the memory usage is not a concern for this puzzle, I decided to store all points for the sake of simplicity and readability
     def _build_wire(self, cmds: list[str], loc: tuple[int, int]):
         points = []
         
